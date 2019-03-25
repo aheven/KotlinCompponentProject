@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin:'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    resourcePrefix "common_"
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    // Support libraries
+    api deps.support.app_compat
+    api deps.kotlin.ktx
+    api deps.kotlin.stdlib
+
+    //rxjava
+    api deps.rxjava.rxjava2
+    api deps.rxjava.rxandroid
+
+    //retrofit
+    api deps.retrofit.runtime
+    api deps.retrofit.adapter
+    api deps.retrofit.gson
+
+    api deps.okhttp
+    api deps.utils
+    api deps.support.multidex
+    api deps.autodispose
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
+}
