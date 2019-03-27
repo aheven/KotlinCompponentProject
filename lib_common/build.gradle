@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin:'kotlin-android'
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -11,8 +11,11 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -45,12 +48,25 @@ dependencies {
     api deps.retrofit.adapter
     api deps.retrofit.gson
 
+    //glide
+    api deps.glide.runtime
+    annotationProcessor deps.glide.compiler
+
+    //smartTabLayout
+    api deps.smart_tabLayout.runtime
+    api deps.smart_tabLayout.utils
+
+    api deps.arouter.runtime
     api deps.okhttp
     api deps.utils
     api deps.support.multidex
     api deps.autodispose
+    api deps.recyclerview
+    api deps.recyclerview_adapter
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
+
+    annotationProcessor deps.arouter.compiler
 }

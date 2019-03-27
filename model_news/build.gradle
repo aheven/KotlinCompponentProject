@@ -9,11 +9,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion build_versions.target_sdk
+
     defaultConfig {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+
         kapt {
             arguments {
                 arg("AROUTER_MODULE_NAME", project.getName())
@@ -21,7 +23,7 @@ android {
         }
     }
 
-    resourcePrefix "main_"
+    resourcePrefix "news_"
 
     sourceSets {
         main {

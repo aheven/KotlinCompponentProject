@@ -9,12 +9,5 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name="heven.holt.main.ui.SecondActivity"/>
-        <!--<activity-->
-        <!--android:name=".BottomNavigationActivity"-->
-        <!--android:label="@string/title_activity_fragment_module">-->
-
-        <!--</activity>-->
     </application>
 </manifest>

@@ -15,6 +15,12 @@ versions.okhttp = "3.11.0"
 versions.retrofit = "2.4.0"
 versions.utils = "1.14.3"
 versions.autodispose = "1.1.0"
+versions.recyclerview = "1.0.0"
+versions.recyclerview_adapter = "2.9.45-androidx"
+versions.glide = "4.8.0"
+versions.arouter = "1.4.1"
+versions.compiler = "1.2.2"
+versions.smart_tabLayout = "2.0.0@aar"
 
 def deps = [:]
 
@@ -46,10 +52,27 @@ retrofit.adapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 deps.retrofit = retrofit
 
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.glide = glide
+
+def arouter = [:]
+arouter.runtime = "com.alibaba:arouter-api:$versions.arouter"
+arouter.compiler = "com.alibaba:arouter-compiler:$versions.compiler"
+deps.arouter = arouter
+
+def smart_tabLayout = [:]
+smart_tabLayout.runtime = "com.ogaclejapan.smarttablayout:library:$versions.smart_tabLayout"
+smart_tabLayout.utils = "com.ogaclejapan.smarttablayout:utils-v4:$versions.smart_tabLayout"
+deps.smart_tabLayout = smart_tabLayout
+
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
 deps.utils = "com.blankj:utilcode:$versions.utils"
 deps.autodispose = "com.uber.autodispose:autodispose-android-archcomponents-ktx:$versions.autodispose"
+deps.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+deps.recyclerview_adapter = "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.recyclerview_adapter"
 
 ext.deps = deps
 
@@ -61,6 +84,7 @@ ext.build_versions = build_versions
 static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
+    handler.maven { url 'https://jitpack.io' }
 }
 
 ext.addRepos = this.&addRepos
