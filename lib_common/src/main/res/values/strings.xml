@@ -1,3 +1,9 @@
 <resources>
     <string name="common_app_name">lib_common</string>
+
+    <string name="common_header_reset">下拉刷新</string>
+    <string name="common_header_pull">下拉刷新</string>
+    <string name="common_header_pull_over">释放立即刷新</string>
+    <string name="common_header_refreshing">正在刷新…</string>
+    <string name="common_header_completed">刷新成功</string>
 </resources>

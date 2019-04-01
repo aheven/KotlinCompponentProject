@@ -10,8 +10,6 @@
             android:id="@+id/smartTabLayout"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            app:stl_customTabTextLayoutId="@layout/main_smart_layout_icon_text"
-            app:stl_customTabTextViewId="@id/custom_tab_text"
             app:stl_distributeEvenly="true"
             app:stl_indicatorColor="@android:color/transparent"
             android:layout_alignParentBottom="true"

@@ -1,5 +1,7 @@
 package heven.holt.model.news.mvp.model.vo
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
+
 /**
  * Administrator
  * created at 2018/11/23 13:32
@@ -16,4 +18,8 @@ data class RoomQuickVo(
         var activeTime: Long?,//激活时间
         var grade: Int?,//房间级别，0-普通房间，1-系统房间
         var url: String?//拉流外链地址
-)
+): MultiItemEntity {
+        override fun getItemType(): Int {
+                return 0
+        }
+}
