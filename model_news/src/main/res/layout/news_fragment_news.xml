@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <heven.holt.lib_common.widget.refresh.EasyRefreshLayout
+            android:id="@+id/easyRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </heven.holt.lib_common.widget.refresh.EasyRefreshLayout>
+
+    <heven.holt.lib_common.widget.sticky.StickyHeadContainer
+            android:id="@+id/stickyHeadContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include layout="@layout/news_item_sticky_head" />
+
+    </heven.holt.lib_common.widget.sticky.StickyHeadContainer>
+
+</RelativeLayout>

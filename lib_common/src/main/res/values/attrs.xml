@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="common_EasySwipeMenuLayout">
+        <attr name="common_leftMenuView" format="reference" />
+        <attr name="common_rightMenuView" format="reference" />
+        <attr name="common_contentView" format="reference" />
+        <attr name="common_canRightSwipe" format="boolean" />
+        <attr name="common_canLeftSwipe" format="boolean" />
+        <attr name="common_fraction" format="float" />
+    </declare-styleable>
+</resources>

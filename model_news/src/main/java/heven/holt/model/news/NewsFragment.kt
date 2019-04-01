@@ -15,7 +15,7 @@ import heven.holt.model.news.mvp.contract.MainContract
 import heven.holt.model.news.mvp.model.vo.RoomQuickVo
 import heven.holt.model.news.mvp.model.vo.RoomTitleVo
 import heven.holt.model.news.mvp.presenter.MainPresenter
-import kotlinx.android.synthetic.main.news_activity_news.*
+import kotlinx.android.synthetic.main.news_fragment_news.*
 import kotlinx.android.synthetic.main.news_item_sticky_head.view.*
 
 @Route(path = "/news/fragment")
@@ -32,7 +32,7 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
         initData()
     }
 
-    override fun getLayoutResID(): Int = R.layout.news_activity_news
+    override fun getLayoutResID(): Int = R.layout.news_fragment_news
 
     private fun initEasyRefreshView() {
         easyRefreshLayout.loadMoreModel = LoadModel.NONE
