@@ -59,5 +59,6 @@ dependencies {
     if (!isModule.toBoolean()) {
         implementation project(':model_main')
         implementation project(':model_news')
+        implementation project(':model_camera')
     }
 }

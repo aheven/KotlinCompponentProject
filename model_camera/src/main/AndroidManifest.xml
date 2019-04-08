@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="heven.holt.model.camera">
+
+    <application android:theme="@style/common_AppTheme">
+        <activity android:name="heven.holt.model.camera.ui.SurfaceViewCreateActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.SurfaceViewCameraActivity"/>
+    </application>
+
+</manifest>

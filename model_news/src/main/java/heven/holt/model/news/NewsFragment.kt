@@ -2,6 +2,7 @@ package heven.holt.model.news
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.entity.MultiItemEntity
@@ -57,7 +58,7 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
     }
 
     private fun initRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context,3)
         val data = mutableListOf<RoomQuickVo>()
         homeAdapter = HomeAdapter(data)
         recyclerView.adapter = homeAdapter

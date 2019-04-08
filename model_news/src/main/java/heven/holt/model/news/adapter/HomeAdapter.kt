@@ -47,8 +47,6 @@ class HomeAdapter(data: List<MultiItemEntity>) :
     }
 
     companion object {
-        const val TYPE_DATA = 1
-        const val TYPE_STICKY_HEAD = 0
-        const val TYPE_SMALL_STICKY_HEAD_WITH_DATA = 3
+        const val TYPE_STICKY_HEAD = 1
     }
 }

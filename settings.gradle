@@ -1,1 +1,1 @@
-include ':model_app', ':lib_common', ':model_main', ':model_news'
+include ':model_app', ':lib_common', ':model_main', ':model_news', ':model_camera'

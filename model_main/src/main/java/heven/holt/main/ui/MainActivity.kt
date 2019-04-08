@@ -25,12 +25,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initStartTabLayout() {
-        val titles = arrayOf("news1", "news2", "news3")
+        val titles = arrayOf("news1", "camera")
         val fragments = FragmentPagerItems(this)
-        titles.forEach {
-            val newsFragment = ARouter.getInstance().build("/news/fragment").navigation() as Fragment
-            fragments.add(FragmentPagerItem.of(it, newsFragment::class.java))
-        }
+        val newsFragment = ARouter.getInstance().build("/news/fragment").navigation() as Fragment
+        val cameraFragment = ARouter.getInstance().build("/camera/fragment").navigation() as Fragment
+        fragments.add(FragmentPagerItem.of("news1", newsFragment::class.java))
+        fragments.add(FragmentPagerItem.of("camera", cameraFragment::class.java))
         smartTabLayout.setCustomTabView { container, position, _ ->
             val rootView = layoutInflater.inflate(R.layout.main_smart_layout_icon_text, container, false)
             val icon = rootView.findViewById<ImageView>(R.id.custom_tab_icon)
