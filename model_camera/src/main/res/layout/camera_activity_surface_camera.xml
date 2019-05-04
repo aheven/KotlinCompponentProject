@@ -1,20 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@android:color/black">
 
-    <heven.holt.model.camera.widget.CameraWidget
-            android:id="@+id/cameraWidget"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <heven.holt.model.camera.cameraview.CameraView
+            android:id="@+id/camera_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:keepScreenOn="true"
+            android:adjustViewBounds="true"
+            app:camera_autoFocus="true"
+            app:cameraAspectRatio="16:9"
+            app:camera_facing="back"
+            app:camera_flash="off"
+            app:camera_maximumWidth="2000"
+            app:camera_maximumPreviewWidth="1280"
+            app:camera_enableZoom="true"/>
 
-    <Button
-            android:id="@+id/switchCamera"
-            android:text="switch"
-            android:onClick="clickButton"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <View
+            android:id="@+id/shutter_effect"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/camera_view"
+            app:layout_constraintRight_toRightOf="@id/camera_view"
+            app:layout_constraintTop_toTopOf="@id/camera_view"
+            app:layout_constraintBottom_toBottomOf="@id/camera_view"
+            android:alpha="0.8"
+            android:background="@android:color/white"
+            android:visibility="gone"/>
 
-</RelativeLayout>
+    <ImageView
+            android:id="@+id/shutter"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:srcCompat="@drawable/camera_ic_camera_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="16dp"/>
+
+    <ImageView
+            android:id="@+id/turn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:srcCompat="@drawable/camera_ic_switch_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

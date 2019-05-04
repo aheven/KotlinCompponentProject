@@ -63,6 +63,7 @@ dependencies {
     api deps.autodispose
     api deps.recyclerview
     api deps.recyclerview_adapter
+    api deps.constraintlayout
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
