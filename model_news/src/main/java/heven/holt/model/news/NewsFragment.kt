@@ -3,7 +3,6 @@ package heven.holt.model.news
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import heven.holt.lib_common.base.mvp.MvpBaseFragment
@@ -39,12 +38,14 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
         easyRefreshLayout.loadMoreModel = LoadModel.NONE
         easyRefreshLayout.addEasyEvent(object : EasyEvent() {
             override fun startMoveRefreshing() {
-                stickyHeadContainer.visibility = View.INVISIBLE
+                if (stickyHeadContainer != null)
+                    stickyHeadContainer.visibility = View.INVISIBLE
                 isRefreshing = true
             }
 
             override fun endMoveRefreshing() {
-                stickyHeadContainer.visibility = View.VISIBLE
+                if (stickyHeadContainer != null)
+                    stickyHeadContainer.visibility = View.VISIBLE
                 isRefreshing = false
             }
 
@@ -58,7 +59,7 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
     }
 
     private fun initRecyclerView() {
-        recyclerView.layoutManager = GridLayoutManager(context,3)
+        recyclerView.layoutManager = GridLayoutManager(context, 3)
         val data = mutableListOf<RoomQuickVo>()
         homeAdapter = HomeAdapter(data)
         recyclerView.adapter = homeAdapter
@@ -104,6 +105,10 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
         }
         homeAdapter.replaceData(result)
 
+        easyRefreshLayout.refreshComplete()
+    }
+
+    override fun requestRecommendListFailed() {
         easyRefreshLayout.refreshComplete()
     }
 }

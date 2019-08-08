@@ -10,5 +10,6 @@ interface MainContract {
 
     interface View : BaseContract.View {
         fun requestRecommendListSuccess(data: MutableList<RoomQuickVo>?)
+        fun requestRecommendListFailed()
     }
 }

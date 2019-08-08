@@ -3,7 +3,7 @@ package heven.holt.model.news.api
 import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.AutoDispose
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import heven.holt.lib_common.http.ApiServiceManager
+import heven.holt.lib_common.http.rxjava.ApiServiceManager
 import heven.holt.lib_common.http.RxHelper
 import heven.holt.lib_common.http.RxObserver
 import heven.holt.lib_common.model.vo.HttpEntry

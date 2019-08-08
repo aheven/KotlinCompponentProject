@@ -35,9 +35,9 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     // Support libraries
-    api deps.support.app_compat
-    api deps.kotlin.ktx
+    api deps.support.androidx
     api deps.kotlin.stdlib
+    api deps.kotlin.coroutines
 
     //rxjava
     api deps.rxjava.rxjava2
@@ -46,6 +46,7 @@ dependencies {
     //retrofit
     api deps.retrofit.runtime
     api deps.retrofit.adapter
+//    api deps.retrofit.adapter_kotlin
     api deps.retrofit.gson
 
     //glide
