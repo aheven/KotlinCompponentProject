@@ -4,6 +4,9 @@
     <application android:theme="@style/common_AppTheme">
         <activity android:name="heven.holt.model.camera.ui.SurfaceViewCreateActivity"/>
         <activity android:name="heven.holt.model.camera.ui.SurfaceViewCameraActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.XSelectorActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.XSelectorShapeActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.XSelectorShadowActivity"/>
     </application>
 
 </manifest>

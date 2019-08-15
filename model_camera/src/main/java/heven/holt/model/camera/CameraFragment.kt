@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.PermissionUtils
 import heven.holt.lib_common.base.BaseFragment
 import heven.holt.model.camera.ui.SurfaceViewCameraActivity
 import heven.holt.model.camera.ui.SurfaceViewCreateActivity
+import heven.holt.model.camera.ui.XSelectorActivity
 import kotlinx.android.synthetic.main.camera_fragment_main.*
 
 @Route(path = "/camera/fragment")
@@ -18,6 +19,7 @@ class CameraFragment : BaseFragment(), View.OnClickListener {
     override fun initFragment(savedInstanceState: Bundle?) {
         createSurfaceView.setOnClickListener(this)
         cameraSurfaceView.setOnClickListener(this)
+        xSelector.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -38,6 +40,9 @@ class CameraFragment : BaseFragment(), View.OnClickListener {
 
                 })
                 permissionUtils.request()
+            }
+            R.id.xSelector -> {
+                ActivityUtils.startActivity(XSelectorActivity::class.java)
             }
         }
     }
