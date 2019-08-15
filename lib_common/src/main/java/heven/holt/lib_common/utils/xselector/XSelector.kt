@@ -94,4 +94,25 @@ object XSelector {
     fun selectorBackground(pressedDrawable: Drawable, normalDrawable: Drawable): DrawableSelector =
         DrawableSelector.getInstance().defaultDrawable(normalDrawable).pressedDrawable(pressedDrawable)
 
+    /**
+     * 字体颜色颜色器
+     *
+     * @param pressedColorResId 触摸颜色 例：R.color.colorPrimary
+     * @param normalColorResId  正常颜色 例：R.color.colorPrimary
+     */
+    fun selectorColor(@ColorRes pressedColorResId: Int, @ColorRes normalColorResId: Int): ColorSelector {
+        return ColorSelector.getInstance()
+            .selectedColor(pressedColorResId)
+            .defaultColor(normalColorResId)
+    }
+
+    /**
+     * 字体颜色颜色器
+     *
+     * @param pressedColor 触摸颜色 例：#ffffff
+     * @param normalColor  正常颜色 例：#ffffff
+     */
+    fun selectorColor(pressedColor: String, normalColor: String): ColorSelector {
+        return ColorSelector.getInstance().pressedColor(pressedColor).defaultColor(normalColor)
+    }
 }
