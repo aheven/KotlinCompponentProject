@@ -3,6 +3,7 @@ package heven.holt.model.news
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import heven.holt.lib_common.base.mvp.MvpBaseFragment
@@ -17,6 +18,7 @@ import heven.holt.model.news.mvp.model.vo.RoomTitleVo
 import heven.holt.model.news.mvp.presenter.MainPresenter
 import kotlinx.android.synthetic.main.news_fragment_news.*
 import kotlinx.android.synthetic.main.news_item_sticky_head.view.*
+
 
 @Route(path = "/news/fragment")
 class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
@@ -60,10 +62,15 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
 
     private fun initRecyclerView() {
         recyclerView.layoutManager = GridLayoutManager(context, 3)
+        (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         val data = mutableListOf<RoomQuickVo>()
         homeAdapter = HomeAdapter(data)
         recyclerView.adapter = homeAdapter
-        homeAdapter.setOnItemClickListener { _, _, _ ->
+        homeAdapter.setOnItemChildClickListener { _, _, position ->
+            val entity = homeAdapter.data[position]
+            if (entity.itemType != 0) return@setOnItemChildClickListener
+            entity as RoomQuickVo
+            homeAdapter.remove(position)
         }
     }
 

@@ -2,6 +2,7 @@ package heven.holt.lib_common.utils
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 
 fun ImageView.setImageUrl(url: String) {
@@ -9,6 +10,5 @@ fun ImageView.setImageUrl(url: String) {
 }
 
 fun ImageView.setImageRoundUrl(url: String) {
-    val requestOptions = RequestOptions.circleCropTransform()
-    Glide.with(this).load(url).apply(requestOptions).into(this)
+    Glide.with(this).load(url).apply(RequestOptions.bitmapTransform(CircleCrop())).into(this)
 }

@@ -26,6 +26,7 @@ class HomeAdapter(data: List<MultiItemEntity>) :
                 helper.setText(R.id.content, item.name)
                 val imageView = helper.getView<ImageView>(R.id.icon)
                 item.icon?.let { imageView.setImageRoundUrl(it) }
+                helper.addOnClickListener(R.id.delete)
             }
             1 -> {
                 item as RoomTitleVo
