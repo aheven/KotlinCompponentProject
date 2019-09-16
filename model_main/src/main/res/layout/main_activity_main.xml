@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.ogaclejapan.smarttablayout.SmartTabLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.ogaclejapan.smarttablayout.SmartTabLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/smartTabLayout"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            app:stl_distributeEvenly="true"
-            app:stl_indicatorColor="@android:color/transparent"
             android:layout_alignParentBottom="true"
+            app:stl_distributeEvenly="true"
             app:stl_dividerThickness="0dp"
-            app:stl_indicatorInterpolation="linear"
-            />
+            app:stl_indicatorColor="@android:color/transparent"
+            app:stl_indicatorInterpolation="linear" />
 
     <heven.holt.lib_common.widget.ViewPagerNoAnimation
             android:id="@+id/viewPager"
-            android:layout_above="@id/smartTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_above="@id/smartTabLayout" />
 
 
 </RelativeLayout>

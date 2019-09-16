@@ -16,22 +16,35 @@ object RxHelper {
     private val gson = Gson()
 
     fun <T> handleResult(): ObservableTransformer<BaseModel<T>, T> =
-            ObservableTransformer { upstream ->
-                val flatMap = upstream.flatMap<T> { result ->
-                    if (result.isSuccess) { // code: 200
-                        if (result.data == null) Observable.error(ApiResultDataNullException()) else {
-                            LogUtils.i(gson.toJson(result))
-                            createData(result.data)
-                        }
+        ObservableTransformer { upstream ->
+            val flatMap = upstream.flatMap<T> { result ->
+                if (result.isSuccess) {
+                    if (result.data == null) {
+                        Observable.error(ApiResultDataNullException())
                     } else {
-                        Observable.error(ApiException(result.code, result.msg))
+                        LogUtils.i(gson.toJson(result))
+                        createData(result)
                     }
+                } else {
+                    Observable.error(ApiException(result.code, result.msg))
                 }
-                flatMap.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
             }
+            flatMap.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+        }
 
-    private fun <T> createData(data: T): ObservableSource<out T>? {
+    private fun <T> createData(data: BaseModel<T>): ObservableSource<out T>? {
+        return Observable.create { e ->
+            try {
+                data.data?.let { e.onNext(it) }
+                e.onComplete()
+            } catch (ex: Exception) {
+                e.onError(ex)
+            }
+        }
+    }
+
+    private fun <T> createSingleData(data: T): ObservableSource<out T>? {
         return Observable.create { e ->
             try {
                 e.onNext(data)
@@ -47,12 +60,12 @@ object RxHelper {
             result as SingleBaseModel
             if (result.isSuccess) {
 //                YLogUtil.logI(gson.toJson(result))
-                createData(result)
+                createSingleData(result)
             } else {
                 Observable.error<T>(ApiException(result.code, result.msg))
             }
         }
         flatMap.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }

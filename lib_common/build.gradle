@@ -40,8 +40,7 @@ dependencies {
     api deps.kotlin.coroutines
 
     //rxjava
-    api deps.rxjava.rxjava2
-    api deps.rxjava.rxandroid
+    api deps.rxjava.rxkotlin
 
     //retrofit
     api deps.retrofit.runtime

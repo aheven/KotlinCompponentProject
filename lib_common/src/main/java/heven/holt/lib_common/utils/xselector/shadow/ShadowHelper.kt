@@ -70,7 +70,12 @@ class ShadowHelper private constructor() : Drawable() {
         mPaint = Paint()
         mPaint.color = Color.TRANSPARENT
         mPaint.isAntiAlias = true
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         mPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_ATOP)
     }
 
@@ -101,16 +106,31 @@ class ShadowHelper private constructor() : Drawable() {
     /**
      * 设置阴影颜色
      * @param shadowColor 例：R.color.colorPrimary
+     * 注：阴影颜色必须带有透明度
      */
     fun setShadowColor(shadowColor: Int): ShadowHelper {
-        this.mShadowColor = shadowColor
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        this.mShadowColor = XSelectorHelper.getColorRes(shadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         return this
     }
 
+    /**
+     * 设置阴影颜色
+     * 注：阴影颜色必须带有透明度
+     */
     fun setShadowColor(shadowColor: String): ShadowHelper {
         this.mShadowColor = Color.parseColor(shadowColor)
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         return this
     }
 
@@ -119,27 +139,42 @@ class ShadowHelper private constructor() : Drawable() {
      */
     fun setShadowRadius(shadowRadius: Float): ShadowHelper {
         this.mShadowRadius = dip2px(shadowRadius)
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         return this
     }
 
     fun setOffsetX(OffsetX: Float): ShadowHelper {
         this.mOffsetX = dip2px(OffsetX)
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         return this
     }
 
     fun setOffsetY(OffsetY: Float): ShadowHelper {
         this.mOffsetY = dip2px(OffsetY)
-        mPaint.setShadowLayer(mShadowRadius.toFloat(), mOffsetX.toFloat(), mOffsetY.toFloat(), mShadowColor)
+        mPaint.setShadowLayer(
+            mShadowRadius.toFloat(),
+            mOffsetX.toFloat(),
+            mOffsetY.toFloat(),
+            mShadowColor
+        )
         return this
     }
 
     /**
      * 设置背景色
      */
-    fun setBgColor(BgColor: Int): ShadowHelper {
-        this.mBgColor[0] = BgColor
+    fun setBgColor(bgColor: Int): ShadowHelper {
+        this.mBgColor[0] = XSelectorHelper.getColorRes(bgColor)
         return this
     }
 
@@ -170,10 +205,13 @@ class ShadowHelper private constructor() : Drawable() {
 
     override fun onBoundsChange(bounds: Rect?) {
         super.onBoundsChange(bounds)
-        val leftShadow = if (shadowSide and LEFT == LEFT) mShadowRadius - mOffsetX else -mShapeRadius
+        val leftShadow =
+            if (shadowSide and LEFT == LEFT) mShadowRadius - mOffsetX else -mShapeRadius
         val topShadow = if (shadowSide and TOP == TOP) mShadowRadius - mOffsetY else -mShapeRadius
-        val rightShadow = if (shadowSide and RIGHT == RIGHT) mShadowRadius + mOffsetX else -mShapeRadius
-        val bottomShadow = if (shadowSide and BOTTOM == BOTTOM) mShadowRadius + mOffsetY else -mShapeRadius
+        val rightShadow =
+            if (shadowSide and RIGHT == RIGHT) mShadowRadius + mOffsetX else -mShapeRadius
+        val bottomShadow =
+            if (shadowSide and BOTTOM == BOTTOM) mShadowRadius + mOffsetY else -mShapeRadius
         if (bounds != null) {
             mRect = RectF(
                 (bounds.left + leftShadow).toFloat(),

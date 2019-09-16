@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--APP的主题色-->
-    <color name="common_colorPrimary">#F44336</color>
-    <color name="common_colorPrimaryDark">#D32F2F</color>
-    <color name="common_colorAccent">#FF5252</color>
+    <color name="common_colorPrimary">#ffffff</color>
+    <color name="common_colorPrimaryDark">#8A8686</color>
+    <color name="common_colorAccent">#8F8A8A</color>
 </resources>

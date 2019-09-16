@@ -73,12 +73,16 @@ object HttpClientManager {
                     val charset = response.body()?.contentType()?.charset()
                     val source = response.body()?.source()
                     source?.request(Long.MAX_VALUE)
-                    LogUtils.i(
-                        "response=请求时长=${System.currentTimeMillis() - time}=(${request.url()}) (${source?.buffer()?.clone()?.readString(
-                            charset
-                                ?: Charset.forName("utf-8")
-                        )})"
-                    )
+//                    LogUtils.i(
+//                        "response=请求时长=${System.currentTimeMillis() - time}=(${request.url()}) (${source?.buffer()?.clone()?.readString(
+//                            charset
+//                                ?: Charset.forName("utf-8")
+//                        )})"
+//                    )
+                    LogUtils.json("response=请求时长=${System.currentTimeMillis() - time}=(${request.url()})",source?.buffer()?.clone()?.readString(
+                        charset
+                            ?: Charset.forName("utf-8")
+                    ))
                 }
                 response
             }.build()

@@ -2,7 +2,10 @@
           package="heven.holt.model_main">
 
     <application android:theme="@style/common_AppTheme">
-        <activity android:name="heven.holt.main.ui.MainActivity">
+        <activity
+                android:label="This is Title"
+                android:logo="@mipmap/ic_launcher"
+                android:name="heven.holt.main.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

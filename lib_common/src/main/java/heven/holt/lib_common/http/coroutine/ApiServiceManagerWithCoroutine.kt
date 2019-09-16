@@ -13,7 +13,7 @@ import java.util.*
 object ApiServiceManagerWithCoroutine {
     private val gson = GsonBuilder().registerTypeAdapter(
         Date::class.java,
-        JsonDeserializer<Date> { json, _, _ -> Date(json.asJsonPrimitive.asLong) }).create()
+        JsonDeserializer { json, _, _ -> Date(json.asJsonPrimitive.asLong) }).create()
 
     private val mRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://service.wowolive99.com/cmd/")
