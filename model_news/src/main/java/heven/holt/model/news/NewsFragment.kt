@@ -1,5 +1,6 @@
 package heven.holt.model.news
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -8,10 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.AdaptScreenUtils
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.Utils
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.uber.autodispose.AutoDispose
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import heven.holt.lib_common.base.mvp.MvpBaseFragment
 import heven.holt.lib_common.widget.refresh.EasyEvent
 import heven.holt.lib_common.widget.refresh.LoadModel
@@ -23,7 +21,7 @@ import heven.holt.model.news.mvp.model.vo.RoomQuickVo
 import heven.holt.model.news.mvp.model.vo.RoomTitleVo
 import heven.holt.model.news.mvp.presenter.MainPresenter
 import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
+import io.reactivex.ObservableEmitter
 import kotlinx.android.synthetic.main.news_fragment_news.*
 import kotlinx.android.synthetic.main.news_item_sticky_head.view.*
 import java.util.concurrent.TimeUnit
@@ -37,8 +35,6 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
     override fun initPresenter(): MainPresenter = MainPresenter()
 
     override fun initFragmentAfterPresenter(savedInstanceState: Bundle?) {
-        LogUtils.e(AppUtils.getAppInfo())
-
         initEasyRefreshView()
         initRecyclerView()
         initStickyHeadView()
@@ -71,23 +67,27 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
         })
     }
 
+    @SuppressLint("AutoDispose", "CheckResult")
     private fun initRecyclerView() {
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         val data = mutableListOf<RoomQuickVo>()
         homeAdapter = HomeAdapter(data)
         recyclerView.adapter = homeAdapter
+
+        var emitter:ObservableEmitter<Unit>? = null
+        val disposable = Observable.create<Unit> {
+            emitter = it
+        }.throttleFirst(2, TimeUnit.SECONDS)
+            .subscribe { println("delete btn is click.") }
         homeAdapter.setOnItemChildClickListener { _, _, position ->
-//            val entity = homeAdapter.data[position]
+            //            val entity = homeAdapter.data[position]
 //            if (entity.itemType != 0) return@setOnItemChildClickListener
 //            entity as RoomQuickVo
 //            homeAdapter.remove(position)
-            Observable.just(1)
-                .repeatWhen { Observable.interval(1, TimeUnit.SECONDS) }
-                .`as`(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
-                .subscribe {
-                    LogUtils.d("repeat",it)
-                }
+            emitter?.onNext(Unit)
+            if (!disposable.isDisposed)
+            disposable.dispose()
         }
     }
 
@@ -98,7 +98,9 @@ class NewsFragment : MvpBaseFragment<MainPresenter>(), MainContract.View {
                 stickyHeadContainer.content.text = multiItemEntity.title
             }
         }
-        stickyHeadContainer.post { stickyHeadContainer.layoutParams.height = AdaptScreenUtils.pt2Px(60f) }
+        stickyHeadContainer.post {
+            stickyHeadContainer.layoutParams.height = AdaptScreenUtils.pt2Px(60f)
+        }
         val stickyItemDecoration = StickyItemDecoration(stickyHeadContainer, 1)
         stickyItemDecoration.setOnStickyChangeListener(object : OnStickyChangeListener {
             override fun onScrollable(offset: Int) {

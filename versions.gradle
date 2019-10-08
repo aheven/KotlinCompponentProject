@@ -80,7 +80,7 @@ deps.constraintlayout = "androidx.constraintlayout:constraintlayout:$versions.co
 ext.deps = deps
 
 def build_versions = [:]
-build_versions.min_sdk = 15
+build_versions.min_sdk = 16
 build_versions.target_sdk = 28
 ext.build_versions = build_versions
 

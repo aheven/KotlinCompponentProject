@@ -56,6 +56,9 @@ dependencies {
     implementation deps.support.multidex
     implementation project(':lib_common')
 
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
+
     if (!isModule.toBoolean()) {
         implementation project(':model_main')
         implementation project(':model_news')

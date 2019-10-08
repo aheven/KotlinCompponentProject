@@ -63,4 +63,6 @@ dependencies {
 
     implementation project(':lib_common')
     kapt deps.arouter.compiler
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.10.5'
 }

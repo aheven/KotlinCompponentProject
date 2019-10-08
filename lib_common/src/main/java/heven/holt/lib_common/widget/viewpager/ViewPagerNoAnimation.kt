@@ -1,4 +1,4 @@
-package heven.holt.lib_common.widget
+package heven.holt.lib_common.widget.viewpager
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -14,7 +14,7 @@
             app:stl_indicatorColor="@android:color/transparent"
             app:stl_indicatorInterpolation="linear" />
 
-    <heven.holt.lib_common.widget.ViewPagerNoAnimation
+    <heven.holt.lib_common.widget.viewpager.ViewPagerNoAnimation
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

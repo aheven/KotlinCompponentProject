@@ -7,6 +7,8 @@
         <activity android:name="heven.holt.model.camera.ui.XSelectorActivity"/>
         <activity android:name="heven.holt.model.camera.ui.XSelectorShapeActivity"/>
         <activity android:name="heven.holt.model.camera.ui.XSelectorShadowActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.ExoPlayerActivity"/>
+        <activity android:name="heven.holt.model.camera.ui.AutoScrollViewPagerActivity"/>
     </application>
 
 </manifest>

@@ -8,4 +8,15 @@
         <attr name="common_canLeftSwipe" format="boolean" />
         <attr name="common_fraction" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="common_AutoScrollViewPager">
+        <attr name="common_points_visibility" format="boolean" />
+        <attr name="common_points_position" format="enum">
+            <enum name="CENTER" value="0" />
+            <enum name="LEFT" value="1" />
+            <enum name="RIGHT" value="2" />
+        </attr>
+        <attr name="common_points_container_background" format="reference|color" />
+        <attr name="common_isAutoScroll" format="boolean" />
+    </declare-styleable>
 </resources>
